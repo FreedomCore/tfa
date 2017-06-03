@@ -1,0 +1,35 @@
+{
+    "name": "freedomcore/tfa",
+    "description": "FreedomCore Two-Factor Authentication Library",
+    "type": "library",
+    "keywords": [ "Authentication", "Two Factor Authentication", "Multi Factor Authentication", "TFA", "MFA", "PHP", "Authenticator"],
+    "homepage": "https://github.com/freedomcore/tfa",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Zhivolupov Ivan",
+            "homepage": "https://freedomcore.ru",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/freedomcore/tfa/issues",
+        "source": "https://github.com/freedomcore/tfa"
+    },
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "FreedomCore\\TFA\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "FreedomCore\\TFA\\Test\\": "tests"
+        }
+    }
+}
