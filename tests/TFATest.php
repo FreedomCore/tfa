@@ -1,7 +1,6 @@
 <?php namespace FreedomCore\TFA\Tests;
 
 
-use FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException;
 use FreedomCore\TFA\Interfaces\RandomByte;
 use FreedomCore\TFA\Interfaces\Time;
 use FreedomCore\TFA\Provider as EntryPoint;
@@ -38,7 +37,7 @@ class TFATest extends TestCase {
      * Test if constructor accepts only digits greater than 0
      */
     public function testConstructorInvalidDigits() {
-        $this->expectException(TwoFactorAuthenticationException::class);
+        $this->expectException('\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException');
         new EntryPoint('Test Case', 0);
     }
 
@@ -46,7 +45,7 @@ class TFATest extends TestCase {
      * Test if exception will be thrown IF issue period is less/equal to zero
      */
     public function testConstructorInvalidIssuePeriod() {
-        $this->expectException(TwoFactorAuthenticationException::class);
+        $this->expectException('\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException');
         new EntryPoint('Test Case', 6, 0);
     }
 
@@ -54,7 +53,7 @@ class TFATest extends TestCase {
      * Test IF exception is thrown on invalid hashing algorithm
      */
     public function testConstructorHashingAlgorithmValidation() {
-        $this->expectException(TwoFactorAuthenticationException::class);
+        $this->expectException('\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException');
         new EntryPoint('Test Case', 6, 30, 'invalid algorithm');
     }
 
@@ -70,7 +69,7 @@ class TFATest extends TestCase {
      * Test IF exception is thrown while using insecure RandomByte Provider
      */
     public function testInsecureProviderExceptionThrown() {
-        $this->expectException(TwoFactorAuthenticationException::class);
+        $this->expectException('\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException');
         $provider = new EntryPoint('Test Case', 6, 30, 'sha1', null, new TestCaseRandomByte());
         $provider->createSecret(160);
     }
@@ -101,7 +100,7 @@ class TFATest extends TestCase {
      * Test IF Time Comparison Function Fails On Incorrect Time
      */
     public function testTimeComparisonFunctionWorksForIncorrectTime() {
-        $this->expectException(TwoFactorAuthenticationException::class);
+        $this->expectException('\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException');
         $provider = new EntryPoint('Test Case', 6, 30, 'sha1', null, null, new TestCaseTime(time()));
         $provider->validateTime([new TestCaseTime(time() + 4)], 0);
     }
