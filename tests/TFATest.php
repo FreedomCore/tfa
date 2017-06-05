@@ -90,7 +90,7 @@ class TFATest extends TestCase {
         try {
             $provider = new EntryPoint('Test Case', 6, 30, 'sha1', null, null, new TestCaseTime(time()));
             $provider->validateTime([new TestCaseTime(time() + 4)]);
-        } catch (TwoFactorAuthenticationException $exception) {
+        } catch (\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException $exception) {
             $this->fail();
         }
         $this->assertTrue(true);
@@ -112,7 +112,7 @@ class TFATest extends TestCase {
         try {
             $provider = new EntryPoint('Test Case', 6, 30, 'sha1');
             $provider->validateTime([new TestCaseTime(time())], 1);
-        } catch (TwoFactorAuthenticationException $exception) {
+        } catch (\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException $exception) {
             $this->fail();
         }
         $this->assertTrue(true);
@@ -130,7 +130,7 @@ class TFATest extends TestCase {
                 new ServerTime('https://github.com'),
                 new MachineTime()
             ]);
-        } catch (TwoFactorAuthenticationException $exception) {
+        } catch (\FreedomCore\TFA\Exceptions\TwoFactorAuthenticationException $exception) {
             $this->fail();
         }
         $this->assertTrue(true);
